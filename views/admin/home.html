@@ -1,0 +1,58 @@
+{% extends 'nav.html' %}
+
+{% block userClass %}
+	{% parent %}
+	class="active"
+{% endblock %}
+
+
+
+{% block customNavbar %}
+	{% parent %}
+	<li><a href="/admin/users">Users</a></li>
+	<li><a href="/contest/create">New Contest</a></li>
+	<li><a href="/admin/create">Create Admin</a></li>
+{% endblock %}
+
+
+{% block content%}
+	{% parent %}
+<div class="container">
+	<div class="row">
+		<div class="row">
+	        <div class="col-lg-12">
+	            <h1 class="page-header">
+	            	Admin {{ user.firstName }} {{ user.lastName }}
+	            </h1>
+	            <ol class="breadcrumb">
+	                <li class="active">
+	               		<i class="fa fa-table"></i>&nbsp;Home
+	                </li>
+	            </ol>
+	        </div>
+	    </div>
+		{% if success.length>0 %}
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					<div class="alert alert-success alert-dismissable">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+						{{success[0]}}
+					</div>
+				</div>
+			</div>
+		{% endif %}
+		{% if error.length>0 %}
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					<div class="alert alert-danger alert-dismissable">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+						{{error[0]}}
+					</div>
+				</div>
+			</div>
+		{% endif %}	
+	</div>
+</div>
+
+
+{% endblock %}

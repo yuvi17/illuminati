@@ -1,0 +1,51 @@
+{% extends 'navbar.html' %}
+
+
+
+ {% block customNavbar %}
+ 	{% parent %}
+ 	<li class="dropdown active">
+       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contests <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li class="active"><a href="/contest/live">Live</a></li>
+            <li><a href="#">Upcoming</a></li>
+            <li><a href="#">Completed</a></li>
+        </ul>
+    </li>
+    <li><a href="">Leader Board </a></li>` 
+ {% endblock%}
+
+
+{% block content%}
+	{% parent %}
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12 col-sm-8 col-md-9">
+			<h2 class="text-center">{{ contest.title }}</h2>
+			<br>
+			<h4 class="pull-left">{{ contest.caption }}</h4>
+			<br>
+			{% for image in contest.images %}
+			<div class="imageBox">
+				<img src="{{ image.location }}" class="img-responsive" />
+				<br>
+			</div>
+			{% endfor %}
+			<form class="form-group center" action = "/contest/answer/{{ contest._id }}">
+			<br>
+			<br>
+				<label for="answer">Your Answer</label>
+				<input type="text" name="answer" id="answer" class="form-control"/>
+				<p class="help-block">No spaces and lower case only.</p>
+				<button class="btn btn-default btn-large" role="submit" type="submit">		Answer
+				</button>
+			</form>
+		</div>
+		<div class="col-xs-12 col-sm-4 col-md-3">
+			<h4> Timer comes here</h4>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}

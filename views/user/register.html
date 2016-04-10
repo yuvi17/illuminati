@@ -1,0 +1,66 @@
+{% extends 'nav.html' %}
+
+{% block content%}
+	{% parent %}
+
+<div class="main-container center container valign-wrapper" id="register">
+	<h1 class="text-center">REGISTER FOR CONTESTS</h1>
+	<BR>
+	<bR>
+	<div class="box center valign-wrapper">
+		<form class="row" action="/user/register" method="post">
+			{% if success.length>0 %}
+				<div class="row clearfix">
+					<div class="col-sm-12 column">
+						<div class="alert alert-success alert-dismissable">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+							Registration Successful. Please Login to Continue.
+						</div>
+					</div>
+				</div>
+				{% endif %}
+				{% if error.length>0 %}
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div class="alert alert-danger alert-dismissable">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+							{{error[0]}}
+						</div>
+					</div>
+				</div>
+				{% endif %}
+			<div class="col-sm-12 col-md-6 col-xs-12 form-group center">
+				<label for="firstName">First Name</label>
+				<input name="firstName" id="first_name" type="text" class="validate form-control" pattern="[a-zA-Z]+" required>
+			</div>
+			<div class="col-sm-12 col-md-6 col-xs-12 form-group center">
+				<label for="LastName">Last Name</label>
+				<input name="lastName" id="last_name" type="text" class="validate form-control" pattern="[a-zA-Z]+" required>
+			</div>
+			<div class="col-sm-12 col-md-6 col-xs-12 form-group center">
+				<label for="email">Email</label>
+				<input name="email" id="email" type="email" required class="validate form-control">
+			</div>
+			<div class="col-sm-12 col-md-6 col-xs-12 form-group center">
+				<label for="nick">Nick</label>
+				<input name="nick" id="nick" type="text" class="validate form-control" pattern="[a-zA-Z1-9]+" required>
+			</div>
+			<div class="col-sm-12 col-md-6 col-xs-12 form-group center">
+				<label for="password">Password</label>
+				<input name="password" id="password" type="password" class="validate form-control" required >
+			</div>
+			<div class="col-sm-12 col-md-6 col-xs-12 form-group center">
+				<label for="confirmPassword">Confirm Password</label>
+				<input name="confirmPassword" id="confirmPassword" type="password" class="validate form-control" required >
+			</div>
+			<div class="col s12 form-group center">
+				<button class="btn btn-default center" type="submit" name="action">Submit
+    			<i class="material-icons right">send</i>
+  				</button>
+			</div>
+
+		</form>
+	</div>
+</div>
+
+{% endblock %}

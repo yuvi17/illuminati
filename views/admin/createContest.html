@@ -1,0 +1,109 @@
+{% extends 'nav.html' %}
+
+
+{% block customNavbar %}
+	{% parent %}
+	<li><a href="/admin/users">Users</a></li>
+	<li class="active"><a href="/contest/create">Create Contest</a></li>
+{% endblock %}
+
+{% block content%}
+	{% parent %}
+<div class="container">
+	<div class="row">
+		<div class="row">
+	        <div class="col-lg-12">
+	            <h1 class="page-header">
+	            	Create New Contest
+	            </h1>
+	            <ol class="breadcrumb">
+	                <li >
+	               		<i class="fa fa-table"></i>&nbsp;
+	               		<a href="/admin/home">Home</a>
+	                </li>
+	                <li class="active">
+	               		<i class="fa fa-table"></i>&nbsp;Create Contest
+	                </li>
+	            </ol>
+	        </div>
+	    </div>
+		{% if success.length>0 %}
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					<div class="alert alert-success alert-dismissable">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+						{{success[0]}}
+					</div>
+				</div>
+			</div>
+		{% endif %}
+		{% if error.length>0 %}
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					<div class="alert alert-danger alert-dismissable">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+						{{error[0]}}
+					</div>
+				</div>
+			</div>
+		{% endif %}
+	</div>
+	<form class="row" action="/contest/create" method="post">
+		<div class="col form-group col-xs-12 col-md-6 center-align">
+				<label for="title">Title</label>
+				<input name="title" id="title" type="text" class="form-control"  required >
+			</div>
+			<div class="col form-group col-xs-12 center-align">
+				<label for="caption">Caption or Hint</label>
+				<input name="caption" id="caption" type="text" class="form-control" required>
+	          
+			</div>
+			<div class="col form-group col-xs-12 col-md-4 center-align">
+	          <label for="date">Start Date</label>
+				<input name="date" id="date" type="text" class="datepicker form-control" required >
+			</div>
+			<div class="col form-group col-xs-12 col-md-4 center-align">
+	          <label for="date">Start Time</label>
+				<input name="time" id="time" type="text" class=" timepicker form-control" required >
+			</div>
+			<div class="col-xs-12 col-md-4 form-group center-align">
+				<label for="duration">Duration</label>
+				<input type="number" name="duration" id="duration" class="form-control" required>
+			</div>
+			<div class="col form-group col-xs-12 col-md-6 center">
+				<label for="answer">Answer</label>
+				<input name="answer" id="Answer" type="text" class="form-control" required placeholder="text only no spaces">
+	          
+			</div>
+			<div class="col form-group col-xs-12 col-md-6 center-align">
+				<label for="confirmAnswer">Confirm Answer</label>
+				<input name="confirmAnswer" id="confirmAnswer" type="text" class="form-control"required placeholder ="text only no spaces">
+	          
+			</div>
+			<div class="col col-xs-12 form-group center-align">
+				<button class="center btn btn-default btn-lg btn-large" type="submit">Upload Question Images</button>
+			</div>
+	</form>
+</div>
+
+
+{% endblock %}
+
+{% block customJS %}
+	{% parent %}
+	<script>
+		$(document).ready(function(){
+			$("#date").click(function(){
+				$(".datepicker").pickadate({});
+				});
+			});
+		$(document).ready(function(){
+			$("#time").click(function(){
+				$(".timepicker").pickatime({});
+				});
+			});
+	</script>
+	<script type="text/javascript" src="/js/picker.js"></script>
+	<script type="text/javascript" src="/js/picker.date.js"></script>
+	<script type="text/javascript" src="/js/picker.time.js"></script>
+{% endblock %}

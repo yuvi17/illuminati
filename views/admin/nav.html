@@ -1,0 +1,85 @@
+<! DOCTYPE HTML >
+
+<!-- Coded by Yuvraj Jaiswal for The Know -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+      <meta name="google-site-verification" content="8O4h2-mze7uYEZEh1kN5W0XlkLyOe1pVAbFoUtNvEQA" />
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <meta name="description" content="TheKnow is a place where tutors and learners meet, interact and share their knowledge. It provides a platform to enhance one's skillset in a very easy yet effective manner.">
+        <meta name="keywords" content="education, skill, training, music, art, literature, science, tutors, mathematics, computers, teacher, learner">
+        <meta name="author" content="Yuvraj Jaiswal ">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" media="screen">
+      <link rel="stylesheet" type="text/css" href="/css/default.css" media="screen">
+      <link rel="stylesheet" type="text/css" href="/css/default.date.css" media="screen">
+      <link rel="stylesheet" type="text/css" href="/css/default.time.css" media="screen">
+      <link rel="stylesheet" type="text/css" href="/css/home.css" media="screen">
+      <link rel='stylesheet' href='//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.css'>
+        {% block userCSS %}{% endblock %}
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet">
+        <title>Welcome Admin</title>
+    </head>
+    <body>
+      <header>
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                      </button>
+                      <a class="navbar-brand" href="#">QBIT</a>
+                    </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li {% block userClass%} {% endblock%}><a href="/admin/home">Home</a></li>
+                            {% block customNavbar%} {% endblock%}
+                            <li class="dropdown">
+                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ user.firstName }} <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/admin/editProfile">Profile</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="/admin/logout">Log Out</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+        </header>
+        {% block content%} {% endblock%}
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.js"></script>
+    {% block customJS %} {% endblock %}
+    <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/responsive/1.0.6/js/dataTables.responsive.js"></script>
+    <script src="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#userData').DataTable({
+                responsive:true
+            });
+        });
+        function displayData(profile) {
+            console.log(profile);
+            var profile = JSON.stringify(profile).replace(/[{}]/g,'').replace(/["\\]/g,'').split(',');
+            var profileHTML="";
+            console.log(profile.length);
+            for (i = 0; i < profile.length; i++) { 
+                var data = profile[i].split(':');
+                profileHTML = profileHTML + '<b>'+data[0]+'</b> : '+data[1]+'<br>';
+            }
+            profileHTML.replace("\"",'');
+           document.getElementById('view_profile').innerHTML = profileHTML;
+        }
+    </script>
+    </body>
+</html>
